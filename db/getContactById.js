@@ -10,7 +10,7 @@ const getContactById = async (id) => {
     }
     return contact;
   } catch (error) {
-    throw new error();
+    throw error;
   }
 };
 

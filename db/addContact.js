@@ -14,7 +14,7 @@ const addContact = async (name, email, phone) => {
     await updateContacts(contacts);
     return newContact;
   } catch (error) {
-    throw new error();
+    throw error;
   }
 };
 

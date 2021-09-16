@@ -13,7 +13,7 @@ const removeContact = async (id) => {
     console.table(contacts);
     return "Success remove";
   } catch (error) {
-    throw new error();
+    throw error;
   }
 };
 
