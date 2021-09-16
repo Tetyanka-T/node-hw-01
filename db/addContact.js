@@ -4,14 +4,18 @@ const updateContacts = require("./updateContact");
 const listContacts = require("./listContacts");
 
 const addContact = async (name, email, phone) => {
-  const contacts = await listContacts();
-  const id = nanoid();
-  const newContact = { id, name, email, phone };
+  try {
+    const contacts = await listContacts();
+    const id = nanoid();
+    const newContact = { id, name, email, phone };
 
-  contacts.push(newContact);
+    contacts.push(newContact);
 
-  await updateContacts(contacts);
-  return newContact;
+    await updateContacts(contacts);
+    return newContact;
+  } catch (error) {
+    throw new error();
+  }
 };
 
 module.exports = addContact;
