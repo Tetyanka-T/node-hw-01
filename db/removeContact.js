@@ -2,16 +2,19 @@ const listContacts = require("./listContacts");
 const updateContacts = require("./updateContact");
 
 const removeContact = async (id) => {
-  const contacts = await listContacts();
-  const idx = contacts.findIndex((contact) => contact.id === id);
-  if (idx === -1) {
-    return null;
+  try {
+    const contacts = await listContacts();
+    const idx = contacts.findIndex((contact) => contact.id === Number(id));
+    if (idx === -1) {
+      return null;
+    }
+    contacts.splice(idx, 1);
+    await updateContacts(contacts);
+    console.table(contacts);
+    return "Success remove";
+  } catch (error) {
+    throw new error();
   }
-  const newContacts = contacts.filter((item) => item.id !== id);
-
-  await updateContacts(newContacts);
-
-  return "Success remove";
 };
 
 module.exports = removeContact;

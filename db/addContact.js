@@ -1,10 +1,13 @@
-const { v4 } = require("uuid");
+const { nanoid } = require("nanoid");
+const fs = require("fs/promises");
 const updateContacts = require("./updateContact");
 const listContacts = require("./listContacts");
 
-const addContact = async (id, name, email, phone) => {
+const addContact = async (name, email, phone) => {
   const contacts = await listContacts();
-  const newContact = { id: v4(), id, name, email, phone };
+  const id = nanoid();
+  const newContact = { id, name, email, phone };
+
   contacts.push(newContact);
 
   await updateContacts(contacts);
